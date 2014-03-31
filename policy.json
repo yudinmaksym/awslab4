@@ -1,0 +1,8 @@
+{	"expiration" : {"day":1},
+	"conditions": [ ["starts-with", "$key", ""],
+    				 {"bucket": ""}, 
+    				 {"acl": "private"},
+    				 {"success_action_redirect": ""},   
+    				 ["content-length-range", 0, 1048576]
+    				]   
+}
