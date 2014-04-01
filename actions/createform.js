@@ -9,13 +9,14 @@ var INDEX_TEMPLATE = "index.ejs";
 
 var task = function(request, callback){
 	//1. load configuration
-	
+	var awsConfig = helpers.readJSONFile(AWS_CONFIG_FILE);
+	var policyData = helpers.readJSONFile(POLICY_FILE);
 
 	//2. prepare policy
-	
+	var policy = new Policy(policyData);
 
 	//3. generate form fields for S3 POST
-	
+	var s3Form = new S3Form(awsConfig);
 	//4. get bucket name
 	
 
