@@ -21,7 +21,7 @@ var task = function(request, callback){
 
 	var fields = s3Form.generateS3FormFields();
 
-	fields.concat(s3Form.generateS3CredientalsFields(awsConfig));
+	fields = fields.concat(s3Form.generateS3CredientalsFields(awsConfig));
 	
 
 	//4. get bucket name
