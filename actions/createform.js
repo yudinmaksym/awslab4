@@ -7,6 +7,7 @@ var POLICY_FILE = "policy.json";
 var INDEX_TEMPLATE = "index.ejs";
 
 
+
 var task = function(request, callback){
 	//1. load configuration
 	var awsConfig = helpers.readJSONFile(AWS_CONFIG_FILE);
@@ -16,11 +17,19 @@ var task = function(request, callback){
 	var policy = new Policy(policyData);
 
 	//3. generate form fields for S3 POST
-	var s3Form = new S3Form(awsConfig);
-	//4. get bucket name
+	var s3Form = new S3Form(policy);
+
+	var fields = s3Form.generateS3FormFields();
+
+	fields.concat(s3Form.generateS3CredientalsFields(awsConfig));
 	
 
-	callback(null, {template: INDEX_TEMPLATE, params:{fields:[], bucket:""}});
+	//4. get bucket name
+	var bucket = policy.getConditionValueByKey("bucket");	
+
+	callback(null, {template: INDEX_TEMPLATE, 
+		params:{fields:fields, bucket:bucket}
+	});
 }
 
 exports.action = task;
