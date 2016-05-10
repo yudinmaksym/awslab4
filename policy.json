@@ -1,11 +1,8 @@
 {	"expiration" : {"day":1},
-	"conditions": [ ["starts-with", "$key", "radek.student/"],
+	"conditions": [ ["starts-with", "$key", "yudin.maksym/"],
     				 {"bucket": "lab4-yudin"}, 
     				 {"acl": "private"},
     				 {"success_action_redirect": "http://localhost:8080"},
-    				 {"name": "Maksym"},
-    				 {"sername": "Yudin"},
-    				 {"computerid": "I-24/011-T4/448"},
     				 ["content-length-range", 0, 1048576]
     				]   
 }
