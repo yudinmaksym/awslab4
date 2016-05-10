@@ -18,9 +18,11 @@ var task = function(request, callback){
 	//3. generate form fields for S3 POST
 	var s3Form = new S3Form(policy);
 	//4. get bucket name
+	var formFields = s3Form.generateS3FormFields();
+	formFields = s3Form.addS3CredentialsFields(formFields, awsConfig);
+	var bucketname  policy.getConditionValueByKey("bucket");
 	
-
-	callback(null, {template: INDEX_TEMPLATE, params:{fields:[], bucket:""}});
+	callback(null, {template: INDEX_TEMPLATE, params:{fields: formFields, bucket:bucketname}});
 }
 
 exports.action = task;
